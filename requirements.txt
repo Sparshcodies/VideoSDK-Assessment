@@ -1,0 +1,5 @@
+asyncio
+numpy
+python-dotenv
+videosdk
+deepgram-sdk
