@@ -19,6 +19,7 @@ def build_audio_frame(chunk: bytes) -> AudioFrame:
     return audio_frame
 
 class MediaStreamError(Exception):
+    print("MediaStreamError")
     pass
 
 

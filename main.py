@@ -1,5 +1,5 @@
 '''
-VideoSDK realtime AI Agent | Interviewer
+VideoSDK realtime AI Agent
 '''
 import os
 import asyncio
@@ -12,26 +12,22 @@ from intelligence.gemini_intelligence import GeminiIntelligence
 from stt.deepgram_stt import DeepgramSTT
 from agent.agent import AIInterviewer
 from dotenv import load_dotenv
+
 load_dotenv(override=True)
+
 loop = asyncio.new_event_loop()
+
 room_id = os.getenv("ROOM_ID")
 auth_token = os.getenv("AUTH_TOKEN")
 language = os.getenv("LANGUAGE", "en-US")
 stt_api_key = os.getenv("DEEPGRAM_API_KEY")
 tts_api_key = os.getenv("ELEVENLABS_API_KEY")
-# Define Gemini service URL, with a default fallback to localhost
 gemini_service_url = os.getenv("GEMINI_SERVICE_URL", "http://localhost:8001/generate")
 agent: AIInterviewer = None
 stopped: bool = False
 
-class Bcolors:
-    '''color class'''
-    HEADER = '\033[95m'
-    OKGREEN = '\033[92m'
-    FAIL = '\033[91m'
 
 async def run():
-    '''main function'''
     global interviewer
     try:
         print("Loading Interviewer...")
@@ -46,7 +42,6 @@ async def run():
             output_track=audio_track,
         )
         
-        # intelligence client - now using Gemini
         intelligence_client = GeminiIntelligence( 
             api_url=gemini_service_url, 
             tts=tts_client,
@@ -66,12 +61,16 @@ async def run():
             intelligence=intelligence_client
         )
 
-        interviewer = AIInterviewer(loop=loop, audio_track=audio_track, stt=stt_client, intelligence=intelligence_client)
+        interviewer = AIInterviewer(
+            loop=loop, 
+            audio_track=audio_track, 
+            stt=stt_client, 
+            intelligence=intelligence_client
+        )
        
         await interviewer.join(meeting_id=room_id, token=auth_token)
 
     except Exception as e:
-        traceback.print_exc()
         print("error while joining", e)
     
 

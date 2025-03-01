@@ -4,10 +4,10 @@ from tts.tts import TTS
 from intelligence.intelligence import Intelligence
 
 class GeminiIntelligence(Intelligence):
-    def __init__(self, api_url: str, tts: TTS, system_prompt: Optional[str] = None):
+    def __init__(self, api_url: str, tts: TTS, system_prompt: str):
         self.api_url = api_url
         self.tts = tts
-        self.system_prompt = system_prompt or "You are AI Interviewer and you are interviewing a candidate for a software engineering position."
+        self.system_prompt = system_prompt
         self.chat_history = []
         self.pubsub = None
     
@@ -34,7 +34,7 @@ class GeminiIntelligence(Intelligence):
         ai_message = {
             "role": "assistant",
             "type": "ai",
-            "name": "Interviewer",
+            "name": "Bucky",
             "content": text,
         }
 

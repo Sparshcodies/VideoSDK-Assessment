@@ -16,7 +16,7 @@ from videosdk.stream import MediaStreamTrack
 
 class AIInterviewer:
     def __init__(self, loop:asyncio.AbstractEventLoop, audio_track: MediaStreamTrack, stt: STT, intelligence: Intelligence):
-        self.name = "Interviewer"
+        self.name = "Bucky"
         self.loop = loop
         self.meeting: Meeting = None
         self.stt: STT = stt
