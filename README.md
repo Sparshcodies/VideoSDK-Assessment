@@ -81,3 +81,11 @@ To stop the project, terminate all running services by pressing **CTRL + C** in 
 ### Important Note
 - **Python VideoSDK is not compatible with Gemini in the same environment**, so we use a separate virtual environment for the Gemini service.
 
+Kill a process at port 
+
+netstat -ano | findstr :8080
+taskkill /PID 2660 /F
+
+or 
+
+npx kill-port 8080

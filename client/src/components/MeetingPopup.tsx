@@ -78,7 +78,7 @@ export const MeetingPopup: React.FC<MeetingPopupProps> = ({
                 {participants.size > 1 && (
                   <ParticipantCard
                     isAI
-                    name="AI Copilot"
+                    name="Bucky"
                     participant={[...participants.values()][1]}
                     isConnected={isAIConnected}
                   />
